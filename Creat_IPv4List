@@ -1,0 +1,132 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace Creat_IPv4List
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // User Information for Threads and Devices.
+            short shThreads = Get_Threads();
+            short shDevices = Get_Devices();
+
+            // Creating Directory for the List.
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\IPv4_List"))
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\IPv4_List");
+            string strFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\IPv4_List";
+
+            // Array for the IP-Addresses.
+            short[] shIpAdress = new short[4] { 0, 0, 0, 0 };
+        
+            // Boolean for checking if the "A" block in the Black-List.
+            bool boReady = false;
+
+            // Array of IP-Black-List.
+            short[] shBlackList = new short[]
+            {0,10,127,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,
+            244,245,246,247,248,249,250,251,252,253,254,255,3,4,8,9,12,15,16,17,18,19,20,32,34,38,44,48,
+            56,6,7,11,21,22,26,28,29,30,33,55,214,215,1,2,5,14,23,24,25,27,31,36,37,39,41,42,43,45,46,49,
+            50,51,53,57,60,61,88,111,114,107,120,128,169,172,177,179,181,183,186,187,189,190,191,192,198,200,201,202,203,218};
+
+            // ---------------------------------------------------------------------------------------------------------------
+            while(true)
+            {
+                if (File.Exists(strFile))
+                {
+                    boReady = true;
+                    break;
+                }
+                else
+                {
+                    File.Create(strFile);
+                }
+            }
+
+            if (boReady == true)
+            {
+                bool boTrue = false;
+                for (short a = 0; a < 255; a++, shIpAdress[0] += 1)
+                {
+                    for (short b = 0; b < shBlackList.Length; b++)
+                    {
+                        if (a == shBlackList[b])
+                        {
+                            boTrue = true;
+                            break;
+                        }
+                        else
+                        {
+                            boTrue = false;
+                        }
+                    }
+                    if (boTrue == false)
+                    {
+                        shIpAdress[1] = 0;
+                        shIpAdress[2] = 0;
+                        shIpAdress[3] = 0;
+                        for (short c = 0; c < 255; c++, shIpAdress[1] += 1)
+                        {
+                            shIpAdress[2] = 0;
+                            shIpAdress[3] = 0;
+                            for (short d = 0; d < 255; d++, shIpAdress[2] += 1)
+                            {
+                                shIpAdress[3] = 0;
+                                for (short e = 0; e < 255; e++, shIpAdress[3] += 1)
+                                {
+                                    File.AppendAllText(strFile, shIpAdress[0] + "." + shIpAdress[1] + "." + shIpAdress[2] + "." + shIpAdress[3] + Environment.NewLine);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Creading the List Files.
+        private void Creat_ListFiles(short shTreads, short shDevices)
+        {
+            int sum = shDevices * shTreads;
+
+        }
+
+        // Get the number of Devices from the user.
+        static private short Get_Devices()
+        {
+            short shDevices = 0;
+            while (true)
+            {
+                Console.Write("How many devices do you want to use: ");
+                try
+                {
+                    shDevices = Convert.ToInt16(Console.ReadLine());
+                    break;
+                }
+                catch { }
+            }
+            return shDevices;
+        }
+
+        // Get the number of threads from the user.
+        static private short Get_Threads()
+        {
+            short shThreads = 0;
+            while (true)
+            {
+                Console.Write("How many threads do you want to use: ");
+                try
+                {
+                    shThreads = Convert.ToInt16(Console.ReadLine());
+                    break;
+                }
+                catch { }
+            }
+            return shThreads;
+        }
+    }
+}
+
