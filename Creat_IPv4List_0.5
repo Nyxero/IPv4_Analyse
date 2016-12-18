@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Threading;
 
 namespace Creat_IPv4List
 {
@@ -14,11 +15,12 @@ namespace Creat_IPv4List
             // User Information for Threads and Devices.
             short shThreads = Get_Threads();
             short shDevices = Get_Devices();
+            short shNowThreads = Get_NowThreads(shDevices, shThreads); 
 
             // Creating Directory for the List.
             if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\IPv4_List"))
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\IPv4_List");
-            string strFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\IPv4_List";
+            string strDirecotry = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\IPv4_List";
 
             // Array for the IP-Addresses.
             short[] shIpAdress = new short[4] { 0, 0, 0, 0 };
@@ -33,19 +35,16 @@ namespace Creat_IPv4List
             56,6,7,11,21,22,26,28,29,30,33,55,214,215,1,2,5,14,23,24,25,27,31,36,37,39,41,42,43,45,46,49,
             50,51,53,57,60,61,88,111,114,107,120,128,169,172,177,179,181,183,186,187,189,190,191,192,198,200,201,202,203,218};
 
+            Thread[] oThreads = Creat_Threads(shNowThreads);
+
             // ---------------------------------------------------------------------------------------------------------------
-            while(true)
+            Creat_ListFiles(shThreads, shDevices, strDirecotry);
+            
+            for(int i = 0; i < oThreads.Length; i++)
             {
-                if (File.Exists(strFile))
-                {
-                    boReady = true;
-                    break;
-                }
-                else
-                {
-                    File.Create(strFile);
-                }
-            }
+                oThreads[i].Start();
+            }        
+            Console.ReadKey();
 
             if (boReady == true)
             {
@@ -78,7 +77,7 @@ namespace Creat_IPv4List
                                 shIpAdress[3] = 0;
                                 for (short e = 0; e < 255; e++, shIpAdress[3] += 1)
                                 {
-                                    File.AppendAllText(strFile, shIpAdress[0] + "." + shIpAdress[1] + "." + shIpAdress[2] + "." + shIpAdress[3] + Environment.NewLine);
+                                    //File.AppendAllText(strFile, shIpAdress[0] + "." + shIpAdress[1] + "." + shIpAdress[2] + "." + shIpAdress[3] + Environment.NewLine);
                                 }
                             }
                         }
@@ -88,10 +87,29 @@ namespace Creat_IPv4List
         }
 
         // Creading the List Files.
-        private void Creat_ListFiles(short shTreads, short shDevices)
+        static private void Creat_ListFiles(short shTreads, short shDevices, string strDirectory)
         {
-            int sum = shDevices * shTreads;
+            string strFileName = "";
 
+            for (short a = 1; a <= shDevices; a++)
+            {
+                for(short b = 1; b <= shTreads; b++)
+                {
+                    strFileName = "Device" + a + "_Thread" + b + ".txt";
+                    try
+                    {
+                        File.Create(strDirectory + "\\" + strFileName);
+                    }
+                    catch
+                    {
+                        Console.Write("Critical error, the List files can´t create!");
+                        Directory.CreateDirectory(strDirectory);
+                        Console.ReadKey();
+                        Environment.Exit(1);
+                    }
+                    strFileName = "";
+                }
+            }
         }
 
         // Get the number of Devices from the user.
@@ -104,6 +122,13 @@ namespace Creat_IPv4List
                 try
                 {
                     shDevices = Convert.ToInt16(Console.ReadLine());
+                    if (shDevices == 0)
+                    {
+                        Console.WriteLine("Zero devices are not allowed!");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    else
                     break;
                 }
                 catch { }
@@ -121,12 +146,59 @@ namespace Creat_IPv4List
                 try
                 {
                     shThreads = Convert.ToInt16(Console.ReadLine());
+                    if (shThreads == 0)
+                    {
+                        Console.WriteLine("Zero threads are not allowes!");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }                  
+                    else
                     break;
                 }
                 catch { }
             }
             return shThreads;
         }
+
+        static private short Get_NowThreads(short shDevices, short shThreads)
+        {
+            short shNowThreads = 0;
+            int sum = shDevices * shThreads;
+            while(true)
+            {
+                Console.Write("How many threads do you want to user for creating the Lists: ");
+                try
+                {
+                    shNowThreads = Convert.ToInt16(Console.ReadLine());
+                    if (shNowThreads % sum != 0 || sum < shNowThreads)
+                    {
+                        Console.WriteLine("Try another value!");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                    else
+                    break;
+                }
+                catch { }
+            }
+            return shNowThreads;
+        }
+
+        static private Thread[] Creat_Threads(short shNowThreads)
+        {
+            Thread[] nowThread = new Thread[shNowThreads];
+
+            for(short i = 0; i < nowThread.Length; i++)
+            {
+                nowThread[i] = new Thread(Fill_List);
+            }
+
+            return nowThread;
+        }
+
+        static private void Fill_List()
+        {
+            Console.WriteLine("Test");
+        }
     }
 }
-
