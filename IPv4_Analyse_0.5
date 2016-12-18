@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
+using System.Threading;
 
 namespace IPv4_Analyse
 {
@@ -13,15 +14,21 @@ namespace IPv4_Analyse
     {
         static void Main(string[] args)
         {
-            Ping oPing = new Ping();
-            PingReply oResult;
-            string strFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\IP_List"
-            + DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + "_" + DateTime.Now.Hour +
-            DateTime.Now.Minute + DateTime.Now.Second + ".txt";
+            // Directory where the List files storaged
+            string strFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\IPv4_List";
+
+            // Array and String for the IP-Adresses.
             short[] shIpAddress = new short[4] { 1, 1, 1, 1 };
             string strIpAddress = null;
+
+            // Ping objects.
+            Ping oPing = new Ping();
+            PingReply oResult;
+
+            // Satistic variables.
             long lTry = 0;
             long lCounter = 0;
+
             if (File.Exists(strFile))
             {
                 System.Threading.Thread.Sleep(1000);
@@ -46,7 +53,6 @@ namespace IPv4_Analyse
                         for(short d = 0; d < 254; d++, shIpAddress[3] +=1)
                         {
                             strIpAddress = shIpAddress[0] + "." + shIpAddress[1] + "." + shIpAddress[2] + "." + shIpAddress[3];
-                            lTry++;
                             Console.Write("Try to Ping IP_Address: " + strIpAddress + " - ");
                             try
                             {
