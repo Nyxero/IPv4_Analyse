@@ -46,44 +46,44 @@ namespace Creat_IPv4List
             }        
             Console.ReadKey();
 
-            if (boReady == true)
-            {
-                bool boTrue = false;
-                for (short a = 0; a < 255; a++, shIpAdress[0] += 1)
-                {
-                    for (short b = 0; b < shBlackList.Length; b++)
-                    {
-                        if (a == shBlackList[b])
-                        {
-                            boTrue = true;
-                            break;
-                        }
-                        else
-                        {
-                            boTrue = false;
-                        }
-                    }
-                    if (boTrue == false)
-                    {
-                        shIpAdress[1] = 0;
-                        shIpAdress[2] = 0;
-                        shIpAdress[3] = 0;
-                        for (short c = 0; c < 255; c++, shIpAdress[1] += 1)
-                        {
-                            shIpAdress[2] = 0;
-                            shIpAdress[3] = 0;
-                            for (short d = 0; d < 255; d++, shIpAdress[2] += 1)
-                            {
-                                shIpAdress[3] = 0;
-                                for (short e = 0; e < 255; e++, shIpAdress[3] += 1)
-                                {
-                                    //File.AppendAllText(strFile, shIpAdress[0] + "." + shIpAdress[1] + "." + shIpAdress[2] + "." + shIpAdress[3] + Environment.NewLine);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            //if (boReady == true)
+            //{
+            //    bool boTrue = false;
+            //    for (short a = 0; a < 255; a++, shIpAdress[0] += 1)
+            //    {
+            //        for (short b = 0; b < shBlackList.Length; b++)
+            //        {
+            //            if (a == shBlackList[b])
+            //            {
+            //                boTrue = true;
+            //                break;
+            //            }
+            //            else
+            //            {
+            //                boTrue = false;
+            //            }
+            //        }
+            //        if (boTrue == false)
+            //        {
+            //            shIpAdress[1] = 0;
+            //            shIpAdress[2] = 0;
+            //            shIpAdress[3] = 0;
+            //            for (short c = 0; c < 255; c++, shIpAdress[1] += 1)
+            //            {
+            //                shIpAdress[2] = 0;
+            //                shIpAdress[3] = 0;
+            //                for (short d = 0; d < 255; d++, shIpAdress[2] += 1)
+            //                {
+            //                    shIpAdress[3] = 0;
+            //                    for (short e = 0; e < 255; e++, shIpAdress[3] += 1)
+            //                    {
+            //                        //File.AppendAllText(strFile, shIpAdress[0] + "." + shIpAdress[1] + "." + shIpAdress[2] + "." + shIpAdress[3] + Environment.NewLine);
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         // Creading the List Files.
@@ -188,17 +188,17 @@ namespace Creat_IPv4List
         {
             Thread[] nowThread = new Thread[shNowThreads];
 
-            for(short i = 0; i < nowThread.Length; i++)
+            for(short i = 0; i < shNowThreads; i++)
             {
-                nowThread[i] = new Thread(Fill_List);
+                nowThread[i] = new Thread(() => Fill_List(""));
             }
 
             return nowThread;
         }
 
-        static private void Fill_List()
+        static private void Fill_List(string test)
         {
-            Console.WriteLine("Test");
+            
         }
     }
 }
