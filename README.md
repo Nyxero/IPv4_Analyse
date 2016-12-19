@@ -8,13 +8,13 @@ Dadurch kann eine Liste von IPv4 Adressen erstellt werden, die öffentlich zugä
 Das gesamte Projekt wird in der Programmiersprache C# entwickelt.
 Also Entwicklungsumgebung nutze ich Visual Studio 2015/2013.
 
-## Über mich
+### Über mich
 Ich bin im relativ neu in der Programmierung bin am anfang der Ausbildung als 
 Fachinformatiker für Anwendungsentwicklung.
 
 Jedoch beschäftige ich mich schon etwas länger (privat) mit der Programmierung.
 
-## Ideen findung
+### Ideen findung
 Hallo zusammen,
 
 heute möchte ich euch eine lustige aber auch sinnlose Anwendung vorstellen.
