@@ -48,8 +48,6 @@ Praktisch übrige IP Adressen (ca.): 2.50.000.000
 Dauert eines Ping: 5 Sekungen
 
   (Anzahl der IP Adressen)\*(Ping dauer)
-
-  (Anzahl der IP Adressen)\*(Ping dauer)
   4.294.967.296 \* 5 = 21.474.839.980 Sekunden.
   21.474.839.980 / 3600 = 5.965.233 Stunden.
   248.551 Tage.
