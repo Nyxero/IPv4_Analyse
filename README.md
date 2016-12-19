@@ -60,3 +60,7 @@ für den Scann durch zu führen.
 Dazu gehören folgende Punkte:
 * Das entegegennehmen der Gewünschten einstellungen (Devices, Threads)
 * Das erstellen der List Dokumente anhand der Einstellungen.
+
+### IPv4_Analyse_VERSION.cs
+In diesem Dokument wird ein Algorithmus beschrieben, der die Hauptfunktion beschrieben wird.
+Dementsprechend wir in dem Dokument die Analyse der Whitelist durchgeführt.
