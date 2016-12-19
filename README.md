@@ -45,10 +45,11 @@ Rechenzeit zu spaaren.
 ### In Zahlen
 Theoretisch mögliche IP Adressen: 4.294.967.296
 Praktisch übrige IP Adressen (ca.): 2.50.000.000
-Dauert eines Ping: 5 Sekungen
+Dauert eines Ping: 5 Sekunden.
 
-Scann dauer in Sekunden: 214 748 399 80
-Scann dauer in Stunden: 5 965 233
+Scann dauer in Sekunden: 21.474.839.980
+----------------------------------------
+Scann dauer in Stunden: 5.965.233
 
 Diese Zeiten werden erziehlt, wenn das gesamte Programm nur auf ein Gerät mit ein Prozess läuft.
 
