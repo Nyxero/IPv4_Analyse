@@ -8,11 +8,13 @@ Dadurch kann eine Liste von IPv4 Adressen erstellt werden, die öffentlich zugä
 Das gesamte Projekt wird in der Programmiersprache C# entwickelt.
 Also Entwicklungsumgebung nutze ich Visual Studio 2015/2013.
 
+
 ### Über mich
 Ich bin im relativ neu in der Programmierung bin am anfang der Ausbildung als 
 Fachinformatiker für Anwendungsentwicklung.
 
 Jedoch beschäftige ich mich schon etwas länger (privat) mit der Programmierung.
+
 
 ### Ideen findung
 Die Idee für das Projekt ist aus zufall entstanden.
@@ -26,6 +28,7 @@ Relativ schnell wurde mir klar, das dieses Projekt viel rechen kapazität benöt
 um diesen kompletten scann innerhalb einer passablen Zeit zu schaffen. Dadruch wurde das
 Projekt etwaS größer als anfangs angenommen.
 
+
 ## Angewandte Methoden/Klassen
 Wie eben erwähnt nutze ich für den IP-Scann die Klasse Ping von dem .Net Framework.
 Dadurch merkt die Anwendung ob die IP-Adresse öffentlich zugänglich ist oder nicht
@@ -33,6 +36,7 @@ Dadurch merkt die Anwendung ob die IP-Adresse öffentlich zugänglich ist oder n
 
 Natürlich habe ich einige mehrere Klassen und Methoden genutzt.
 Jedoch wollte ich nur die Klasse erwähnen auf dem das Projekt basiert.
+
 
 Hallo zusammen,
 
