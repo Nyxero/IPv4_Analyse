@@ -50,3 +50,13 @@ Rechenzeit zu spaaren.
 * Scann dauer in Stunden: 5.965.233
 
 Diese Zeiten werden erziehlt, wenn das gesamte Programm nur auf ein Gerät mit ein Prozess läuft.
+
+## Dokumente
+
+### Creat_IPv4List_VERSION.cs
+In diesem Dokument wird ein Algorithmus beschrieben, der dafür zuständig ist alle vorbereitenden Aufgaben
+für den Scann durch zu führen.
+
+Dazu gehören folgende Punkte:
+* Das entegegennehmen der Gewünschten einstellungen (Devices, Threads)
+* Das erstellen der List Dokumente anhand der Einstellungen.
