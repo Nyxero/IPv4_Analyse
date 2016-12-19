@@ -1,4 +1,21 @@
-# Hallo zusammen,
+# IPv4 Analyse
+
+## Das Projekt
+In dem Projekt "IPv4_Analyse" geht es um eine (bzw. zwei) Consolen Anwendungen.
+Diese Consolen Anwendungen verfolgen das Zeil alle relevanten IP4v Adressen nach verfügbarkeit zu testen.
+Dadurch kann eine Liste von IPv4 Adressen erstellt werden, die öffentlich zugänglich sind.
+
+Das gesamte Projekt wird in der Programmiersprache C# entwickelt.
+Also Entwicklungsumgebung nutze ich Visual Studio 2015/2013.
+
+## Über mich
+Ich bin im relativ neu in der Programmierung bin am anfang der Ausbildung als 
+Fachinformatiker für Anwendungsentwicklung.
+
+Jedoch beschäftige ich mich schon etwas länger (privat) mit der Programmierung.
+
+## Ideen findung
+Hallo zusammen,
 
 heute möchte ich euch eine lustige aber auch sinnlose Anwendung vorstellen.
 
