@@ -8,13 +8,11 @@ Dadurch kann eine Liste von IPv4 Adressen erstellt werden, die öffentlich zugä
 Das gesamte Projekt wird in der Programmiersprache C# entwickelt.
 Also Entwicklungsumgebung nutze ich Visual Studio 2015/2013.
 
-
 ### Über mich
 Ich bin im relativ neu in der Programmierung bin am anfang der Ausbildung als 
 Fachinformatiker für Anwendungsentwicklung.
 
 Jedoch beschäftige ich mich schon etwas länger (privat) mit der Programmierung.
-
 
 ### Ideen findung
 Die Idee für das Projekt ist aus zufall entstanden.
@@ -28,8 +26,7 @@ Relativ schnell wurde mir klar, das dieses Projekt viel rechen kapazität benöt
 um diesen kompletten scann innerhalb einer passablen Zeit zu schaffen. Dadruch wurde das
 Projekt etwaS größer als anfangs angenommen.
 
-
-## Angewandte Methoden/Klassen
+### Angewandte Methoden/Klassen
 Wie eben erwähnt nutze ich für den IP-Scann die Klasse Ping von dem .Net Framework.
 Dadurch merkt die Anwendung ob die IP-Adresse öffentlich zugänglich ist oder nicht
 (eine Antwort oder nicht).
@@ -37,6 +34,27 @@ Dadurch merkt die Anwendung ob die IP-Adresse öffentlich zugänglich ist oder n
 Natürlich habe ich einige mehrere Klassen und Methoden genutzt.
 Jedoch wollte ich nur die Klasse erwähnen auf dem das Projekt basiert.
 
+### Problematik
+Einer der großen Probleme der Anwendung ist der praktische nutzen.
+Die Anwendung braucht für ein kompletten scann unheimlich lange Zeiten,
+wodurch diese Anwendung und das Ziel auf mehrere Geräte und Threads verteielt werden muss.
+
+Das ist zumindest die momentane Lösung die ich verfolge um
+Rechenzeit zu spaaren.
+
+### In Zahlen
+Theoretisch mögliche IP Adressen: 4.294.967.296
+Praktisch übrige IP Adressen (ca.): 2.50.000.000
+Dauert eines Ping: 5 Sekungen
+
+(Anzahl der IP Adressen)*(Ping dauer)
+4.294.967.296 * 5 = 21.474.839.980 Sekunden.
+21.474.839.980 / 3600 = 5.965.233 Stunden.
+248.551 Tage.
+8.172 Monate.
+681 Jahre.
+
+Diese Zeiten werden erziehlt, wenn das gesamte Programm nur auf ein Gerät mit ein Prozess läuft.
 
 Hallo zusammen,
 
@@ -82,16 +100,9 @@ Diese überlegung ist daraus erstanden, das ein Kompletter scann unheimlich lang
 Wenn nur ein Gerät mit ein Prozess diese Analyse ausführen würde.
 
 Hier ein Rechen beispiel:
-Theoretisch mögliche IP Adressen: 4.294.967.296
-Praktisch übrige IP Adressen (ca.): 2.50.000.000
-Dauert eines Ping: 5 Sekungen
 
-(Anzahl der IP Adressen)*(Pingdauer)
-4.294.967.296 * 5 = 21.474.839.980 Sekunden.
-21.474.839.980 / 3600 = 5.965.233 Stunden.
-248.551 Tage.
-8.172 Monate.
-681 Jahre.
+
+
 
 Wenn man diese Berechnungen nun auf mehrere Prozesse und Geräte erweitert,
 kann man durch genug Rechenleistung auf pasable ergebnisse kommen.
