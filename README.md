@@ -47,7 +47,7 @@ Theoretisch mögliche IP Adressen: 4.294.967.296
 Praktisch übrige IP Adressen (ca.): 2.50.000.000
 Dauert eines Ping: 5 Sekungen
 
-Scann dauer in Sekunden: 21474839980
+Scann dauer in Sekunden: 21474839980\n
 Scann dauer in Stunden: 5965233
 
 Diese Zeiten werden erziehlt, wenn das gesamte Programm nur auf ein Gerät mit ein Prozess läuft.
