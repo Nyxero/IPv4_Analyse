@@ -15,6 +15,25 @@ Fachinformatiker für Anwendungsentwicklung.
 Jedoch beschäftige ich mich schon etwas länger (privat) mit der Programmierung.
 
 ### Ideen findung
+Die Idee für das Projekt ist aus zufall entstanden.
+Als ich mir mal wieder einige Klassen der .Net Frameworks angeschaut habe,
+bin ich auf die Klasse Ping gekommen.
+
+Nachdem ich mit der Klasse ein wenig gespielt habe kahm ich auf die Idee
+einfach mal alle IPv4 Adressen anzupingen.
+
+Relativ schnell wurde mir klar, das dieses Projekt viel rechen kapazität benötigen würde, 
+um diesen kompletten scann innerhalb einer passablen Zeit zu schaffen. Dadruch wurde das
+Projekt etwaS größer als anfangs angenommen.
+
+## Angewandte Methoden/Klassen
+Wie eben erwähnt nutze ich für den IP-Scann die Klasse Ping von dem .Net Framework.
+Dadurch merkt die Anwendung ob die IP-Adresse öffentlich zugänglich ist oder nicht
+(eine Antwort oder nicht).
+
+Natürlich habe ich einige mehrere Klassen und Methoden genutzt.
+Jedoch wollte ich nur die Klasse erwähnen auf dem das Projekt basiert.
+
 Hallo zusammen,
 
 heute möchte ich euch eine lustige aber auch sinnlose Anwendung vorstellen.
