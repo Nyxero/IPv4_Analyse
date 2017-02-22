@@ -1,35 +1,38 @@
 # IPv4 Analyse
 
 ## Das Projekt
-In dem Projekt "IPv4_Analyse" geht es um eine (bzw. zwei) Consolen Anwendungen.
-Diese Consolen Anwendungen verfolgen das Zeil alle relevanten IP4v Adressen nach verfügbarkeit zu testen.
+In dem Projekt "IPv4_Analyse" geht es um eine Consolen Anwendung.
+Diese Consolen Anwendung, verfolgen das Zeil alle relevanten IP4v Adressen nach verfügbarkeit zu testen.
 Dadurch kann eine Liste von IPv4 Adressen erstellt werden, die öffentlich zugänglich sind.
 
 Das gesamte Projekt wird in der Programmiersprache C# entwickelt.
-Also Entwicklungsumgebung nutze ich Visual Studio 2015/2013.
+Als Entwicklungsumgebung, nutze ich Visual Studio 2015.
 
 ### Über mich
-Ich bin im relativ neu in der Programmierung bin am anfang der Ausbildung als 
+Ich bin relativ neu in der Programmierung und am anfang meiner Ausbildung als 
 Fachinformatiker für Anwendungsentwicklung.
 
 Jedoch beschäftige ich mich schon etwas länger (privat) mit der Programmierung.
 
 ### Ideen findung
-Die Idee für das Projekt ist aus zufall entstanden.
+Die Idee für das Projekt ist aus Zufall entstanden.
 Als ich mir mal wieder einige Klassen der .Net Frameworks angeschaut habe,
 bin ich auf die Klasse Ping gekommen.
 
-Nachdem ich mit der Klasse ein wenig gespielt habe kahm ich auf die Idee
+Nachdem ich mit der Klasse ein wenig gespielt habe, kahm ich auf die Idee
 einfach mal alle IPv4 Adressen anzupingen.
 
-Relativ schnell wurde mir klar, das dieses Projekt viel rechen kapazität benötigen würde, 
-um diesen kompletten scann innerhalb einer passablen Zeit zu schaffen. Dadruch wurde das
-Projekt etwaS größer als anfangs angenommen.
+Relativ schnell wurde mir klar, das dieses Projekt viel rechen Kapazität benötigen würde, 
+um diesen kompletten Scann innerhalb einer passablen Zeit zu schaffen. Dadruch wurde das
+Projekt etwas größer als anfangs angenommen.
 
 ### Angewandte Methoden/Klassen
 Wie eben erwähnt nutze ich für den IP-Scann die Klasse Ping von dem .Net Framework.
 Dadurch merkt die Anwendung ob die IP-Adresse öffentlich zugänglich ist oder nicht
 (eine Antwort oder nicht).
+
+- System.Net.NetworkInformation;
+- System.Threading;
 
 Natürlich habe ich einige mehrere Klassen und Methoden genutzt.
 Jedoch wollte ich nur die Klasse erwähnen auf dem das Projekt basiert.
@@ -44,23 +47,21 @@ Rechenzeit zu spaaren.
 
 ### In Zahlen
 * Theoretisch mögliche IP Adressen: 4.294.967.296
-* Praktisch übrige IP Adressen (ca.): 2.50.000.000
-* Dauert eines Ping: 5 Sekunden.
-* Scann dauer in Sekunden: 21.474.839.980
-* Scann dauer in Stunden: 5.965.233
+* Praktisch übrige IP Adressen (ca.): 2.500.000.000
+* Dauert eines Ping: 0.05 Sekunden.
+* Dauert eines WebRequest: 0.1 Sekunden.
+* Dauert der Scanns sammt Verarbeitungszeit (ungefähr) 0.3 Sekunden
+* Insgesamt ca. 12.500.500 Sekunden (ohne Threads).
+
 
 Diese Zeiten werden erziehlt, wenn das gesamte Programm nur auf ein Gerät mit ein Prozess läuft.
 
 ## Dokumente
 
-### Creat_IPv4List_VERSION.cs
-In diesem Dokument wird ein Algorithmus beschrieben, der dafür zuständig ist alle vorbereitenden Aufgaben
-für den Scann durch zu führen.
+### IPv4Address.cs
+Diese Datei ist eine eigen erstellt Klasse, 
+um alle Informationen eines IP-Scanns in einem Objekt zusammen zu fassen.
 
-Dazu gehören folgende Punkte:
-* Das entegegennehmen der Gewünschten einstellungen (Devices, Threads)
-* Das erstellen der List Dokumente anhand der Einstellungen.
-
-### IPv4_Analyse_VERSION.cs
-In diesem Dokument wird ein Algorithmus beschrieben, der die Hauptfunktion beschrieben wird.
+### Program.cs
+In diesem Dokument wird ein Algorithmus beschrieben, der die Hauptfunktion beschreibt.
 Dementsprechend wir in dem Dokument die Analyse der Whitelist durchgeführt.
