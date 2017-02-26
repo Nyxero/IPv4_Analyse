@@ -1,14 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Threading;
+using MySql.Data.MySqlClient;
 
 namespace threading
 {
     class Program
     {
+        public static MySqlConnection[] myConnections;
         public static string CurrentPosition { get; set; }      // Beinhaltet die zuletzt zugewiesene IP-Adresse an ein IP-Objekt.
         public static IPv4Address[] IPList;                     // Beinhaltet eine Liste aller IP-Objekte.
         public static Ping[] PingArray;                         // Beinhaltet eine Liste aller Ping-Objekte (notwendig um Ressourcen zu spaaren, ein IP-Objekt hat ein Ping-Objekt).
@@ -39,6 +41,7 @@ namespace threading
                     Console.Clear();
                     PingArray = new Ping[i];                    // Muss initialisiert werden um gefüllt zu werden.
                     IPList = new IPv4Address[i];                // Muss initialisiert werden um gefüllt zu werden.
+                    myConnections = new MySqlConnection[i];     // Muss initialisiert werden um gefüllt zu werden.
                     FillObj();                                  // Füllt alle Listen aus.
                     CreatThreads();                             // Erstellt und Startet die Threads.
                 }
@@ -77,16 +80,33 @@ namespace threading
 
                 // Scannt das aktuelle IP-Objekt.
                 bool b1 = await IPList[thrName].CheckPing(PingArray[Convert.ToInt32(Thread.CurrentThread.Name)], 50, 1);
-                bool b2 = await IPList[thrName].CheckHttp(100, 1);
+                bool b2 = await IPList[thrName].CheckHttp(300, 1);
 
                 // Ausgabe wenn die Ping true zurück gegeben hat.
-                if(b1 == true)
+                if (b1 == true && b2 == true)
+                {
+                    myConnections[thrName].Open();
+                    MySqlCommand command = new MySqlCommand("insert into ipscann(Ping,WebRequest,Domain) value('true','true','" + IPList[thrName].DomainName + "')", myConnections[thrName]);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    myConnections[thrName].Close();
+
+                    Console.WriteLine("Ping: " + IPList[thrName].IpAddress + " [successfully]");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Domain: " + IPList[thrName].IpAddress + " : " + IPList[thrName].DomainName);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else if (b1 == true)
                 {
                     Console.WriteLine("Ping: " + IPList[thrName].IpAddress + " [successfully]");
                 }
                 // Ausgabe wenn WebRequest true zurück gegeben hat.
-                if(b2 == true)
+                if(b2 == true && b1 == false)
                 {
+                    myConnections[thrName].Open();
+                    MySqlCommand command = new MySqlCommand("insert into ipscann(Ping,WebRequest,Domain) value('false','true','" + IPList[thrName].DomainName + "')", myConnections[thrName]);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    myConnections[thrName].Close();
+
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Domain: " + IPList[thrName].IpAddress + " : " + IPList[thrName].DomainName);
                     Console.ForegroundColor = ConsoleColor.White;
@@ -119,7 +139,7 @@ namespace threading
             if (CurrentPosition == null)
             {
                 //int[] iStartPosition = { 85, 169, 128, 0 };       // Bestimmt die die IP-Adresse bei dem der Scann beginnt.
-                int[]  iStartPosition = { 85, 214, 0, 0 };
+                int[]  iStartPosition = { 85, 214, 22, 200 };
 
                 int i = 0;      // Hilfsvariable um die schon gefüllten IPList-Positionen zu bestimmen.
                 while (i < IPList.Length)
@@ -150,6 +170,11 @@ namespace threading
                 for (int a = 0; a < PingArray.Length; a++)
                 {
                     PingArray[a] = new Ping();
+                }
+
+                for(int a = 0; a < myConnections.Length; a++)
+                {
+                    myConnections[a] = new MySqlConnection("server=localhost;user id=XXXXXX;database=ipscann;password=XXXXXX;Connect Timeout=50;");
                 }
             }
             // Wird ausgeführt, wenn die Methode weitere mahle ausgerufen wird (um eine Neue IP-Adresse im IP-Objekt zu bestimmten).
