@@ -28,21 +28,23 @@ Relativ schnell wurde mir klar, das dieses Projekt viel rechen Kapazität benöt
 um diesen kompletten Scann innerhalb einer passablen Zeit zu schaffen. Dadruch wurde das
 Projekt etwas größer als anfangs angenommen.
 
-### Angewandte Methoden/Klassen
+### Angewandte Klassen
 Wie eben erwähnt nutze ich für den IP-Scann die Klasse Ping von dem .Net Framework.
 Dadurch merkt die Anwendung ob die IP-Adresse öffentlich zugänglich ist oder nicht
 (eine Antwort oder nicht).
 
 - System.Net.NetworkInformation;
 - System.Threading;
+- Mysql.Data; (für eine MySqlConnection)
 
 Natürlich habe ich einige mehrere Klassen und Methoden genutzt.
-Jedoch wollte ich nur die Klasse erwähnen auf dem das Projekt basiert.
+Jedoch wollte ich nur die Klasse erwähnen, die erwähnenswert sind.
 
 ### Problematik
 Einer der großen Probleme der Anwendung ist der praktische nutzen.
-Die Anwendung braucht für ein kompletten scann unheimlich lange Zeiten,
-wodurch diese Anwendung und das Ziel auf mehrere Geräte und Threads verteielt werden muss.
+Die Anwendung braucht für ein kompletten scann sehr viel Zeit.
+Auch diesem Grunde habe ich das Ziel verfolgt, die Aufgabe auf mehrere
+Threads und geräte aufzuteilen.
 
 Das ist zumindest die momentane Lösung die ich verfolge um
 Rechenzeit zu spaaren.
@@ -55,8 +57,24 @@ Rechenzeit zu spaaren.
 * Dauert der Scanns sammt Verarbeitungszeit (ungefähr) 0.3 Sekunden
 * Insgesamt ca. 12.500.500 Sekunden (ohne Threads).
 
+Diese Zeiten, werden erziehlt, wenn das gesamte Programm nur auf einem Gerät mit einem Prozess läuft.
 
-Diese Zeiten werden erziehlt, wenn das gesamte Programm nur auf ein Gerät mit ein Prozess läuft.
+## Zukunftsaussichten
+Momentan verfolg ich das Ziel, einen Scann zu einer passablen Zeit abschließen zu können.
+Dem Ziel bin ich durch multi Threading sogar ein stück näher gekommen.
+
+Momentan gibt es die Anwendung nur als Stand alone Verion.
+In der Zukunft sollen die Aufgaben in zwei Anwendungen unterteielt werden.
+
+1. Eine Server Anwendung, die die Ergebnisse in die Datenbank schreibt und die nächste IP-Adresse hergibt.
+2. Eine Client Anwendung, die für die Analyse zuständig ist.
+
+Durch die Aufteilung dieser Aufgaben soll es in der Zukunf möglich werden diese Aufgabe unter mehreren 
+Rechnern aufzuteilen.
+
+Darüberhinaus könnte die Anwendung noch folgende Aufgaben zusätzlich erfüllen:
+
+* Homepage Inhalte anhand von Keywords bestimmen.
 
 ## Dokumente
 
